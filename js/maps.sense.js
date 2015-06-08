@@ -4,8 +4,8 @@
 /** Initialize the propertie's map  **/
 function initialize() {
   var mapOptions = {
-    center: { lat: 6.215620, lng: -75.588192},
-    zoom: 18
+    center: { lat:  6.357621, lng: -75.505078},
+    zoom: 14
   };
 
   var roadMap = new google.maps.Map(document.getElementById('road-map'),
@@ -22,6 +22,7 @@ function initialize() {
   var terrain = new google.maps.Map(document.getElementById('terrain'),
       mapOptions);
   terrain.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+
 }
 
 /** Add listener to a object windows **/
