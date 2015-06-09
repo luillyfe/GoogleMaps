@@ -2,28 +2,16 @@
 <html>
   <head>
     <style type="text/css">
-      html, body { background-color: pink } 
-      #road-map { height: 50%; margin: 0; padding: 0;}
-      #satellite { height: 50%; margin: 0; padding: 0;}
-      #hybrid { height: 50%; margin: 0; padding: 0;}
-      #terrain { height: 50%; margin: 0; padding: 0;}
-      /* Prevents slides from flashing */
-      #slides { display:none; }
+      html, body { background-color: pink }
+      #satellite { height: 50%; width: 100%; margin: 0; padding: 0; position: absolute;}
     </style>
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=YOU_KEY">
     </script>
-    <script src="js/jquery-latest.min.js"></script>
-    <script src="js/jquery.slides.min.js"></script>
     <script src="js/maps.sense.js"></script>
   </head>
   <body>
-    <h3 id="tittle" ></h3>
-    <div id="slides">
-      <div id="road-map" ></div>
-      <div id="satellite" ></div>
-      <div id="hybrid" ></div>
-      <div id="terrain" ></div>
-    </div>
+    <h3 id="tittle" >Satellite Images View</h3>
+    <div id="satellite" ></div>
   </body>
 </html>

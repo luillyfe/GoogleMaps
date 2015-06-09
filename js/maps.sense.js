@@ -2,43 +2,35 @@
 "use strict";
 
 /** Initialize the propertie's map  **/
+var satellite;
 function initialize() {
   var mapOptions = {
-    center: { lat:  6.357621, lng: -75.505078},
-    zoom: 14
+    //Rua da Bahia, 570 - Centro, Belo Horizonte - MG, 30160-010, Brazil
+    center: { lat: -19.919927, lng: -43.936138},
+    zoom: 18,
+    mapTypeId: google.maps.MapTypeId.SATELLITE,
+    heading: 90,
+    tilt: 45
   };
 
-  var roadMap = new google.maps.Map(document.getElementById('road-map'),
+  satellite = new google.maps.Map(document.getElementById('satellite'),
       mapOptions);
   
-  var satellite = new google.maps.Map(document.getElementById('satellite'),
-      mapOptions);
-  satellite.setMapTypeId(google.maps.MapTypeId.SATELLITE);
-  
-  var hybrid = new google.maps.Map(document.getElementById('hybrid'),
-      mapOptions);
-  hybrid.setMapTypeId(google.maps.MapTypeId.HYBRID);
-  
-  var terrain = new google.maps.Map(document.getElementById('terrain'),
-      mapOptions);
-  terrain.setMapTypeId(google.maps.MapTypeId.TERRAIN);
-
+  autoRotate();
 }
 
 /** Add listener to a object windows **/
 google.maps.event.addDomListener(window, 'load', initialize);
 
-/** handle the slide efect **/
-$(function() { 
-  $("#slides").slidesjs({
-    navigation: false, 
-    play: { auto: true },
-    pagination: false,
-    callback: { complete: function(number) {
-      if (number==1) document.getElementById("tittle").innerHTML = "Road Map View";
-      if (number==2) document.getElementById("tittle").innerHTML = "Satellite Images View";
-      if (number==3) document.getElementById("tittle").innerHTML = "Hybrid View";
-      if (number==4) document.getElementById("tittle").innerHTML = "Terrain View";
-    } }
-  });
-});
+/** Rotate 90 degree **/
+function rotate90() {
+  var heading = satellite.getHeading() || 0;
+  satellite.setHeading(heading + 90);
+}
+
+/** autoRotate **/
+function autoRotate() {
+  if (satellite.getTilt() != 0) {
+    window.setInterval(rotate90, 3000);
+  }
+}
