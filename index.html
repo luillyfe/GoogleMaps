@@ -3,15 +3,38 @@
   <head>
     <style type="text/css">
       html, body { background-color: pink }
-      #satellite { height: 50%; width: 100%; margin: 0; padding: 0; position: absolute;}
+      .controls { margin-top: 16px; border: 1px solid transparent; 
+        border-radius: 2px 0 0 2px; box-sizing: border-box;
+        -moz-box-sizing: border-box; height: 32px; outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      #satellite { height: 50%; width: 100%; margin: 0; padding: 0; position: absolute }
+      #address { background-color: #fff; font-family: Roboto;font-size: 15px; 
+        font-weight: 300; margin-left: 12px; padding: 0 11px 0 13px;
+        text-overflow: ellipsis; width: 400px }
+      #address:focus { border-color: #4d90fe }
+      #type-selector { color: #fff; background-color: #4d90fe; 
+        padding: 5px 11px 0px 11px; }
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=YOU_KEY">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAGgZXM1elb5mQfAKZOjRHWd5ihJ90IFTY">
     </script>
     <script src="js/maps.sense.js"></script>
   </head>
   <body>
-    <h3 id="tittle" >Satellite Images View</h3>
-    <div id="satellite" ></div>
+    <div>
+      <h3 id="tittle" >Rua da Bahia, 570 - Centro, Belo Horizonte - MG, 30160-010, Brazil</h3>
+      <div id="satellite" ></div>
+      <input id="address" class="controls" type="text"
+          placeholder="Enter a location" >
+      <input id="search" class="controls" type="submit" 
+        onclick=searchAddress() >
+
+      <select id="type-selector" class="controls">
+        <option value="Mar del Plata, Buenos Aires Province, Argentina">Mar del Plata, Buenos Aires Province, Argentina</option>
+        <option value="Edmonton, AB, Canada">Edmonton, AB, Canada</option>
+        <option value="Birmingham, West Midlands, UK">Birmingham, West Midlands, UK</option>  
+    </select>
+    </div>
   </body>
 </html>

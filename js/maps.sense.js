@@ -3,6 +3,10 @@
 
 /** Initialize the propertie's map  **/
 var satellite;
+var input;
+var types;
+var search;
+
 function initialize() {
   var mapOptions = {
     //Rua da Bahia, 570 - Centro, Belo Horizonte - MG, 30160-010, Brazil
@@ -17,10 +21,22 @@ function initialize() {
       mapOptions);
   
   autoRotate();
+
+  /** @type {HTMLInputElement} */
+  input = (document.getElementById('address'));
+  search = (document.getElementById('search'));
+  types = document.getElementById('type-selector');
+  
+  satellite.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+  satellite.controls[google.maps.ControlPosition.TOP_LEFT].push(search);
+  satellite.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(types);
+
+  google.maps.event.addDomListener(types, 'change', change);
 }
 
 /** Add listener to a object windows **/
 google.maps.event.addDomListener(window, 'load', initialize);
+
 
 /** Rotate 90 degree **/
 function rotate90() {
@@ -33,4 +49,42 @@ function autoRotate() {
   if (satellite.getTilt() != 0) {
     window.setInterval(rotate90, 3000);
   }
+}
+
+/** Search in the map **/
+function searchAddress() {
+  if( input.value != "" && input.value != undefined )
+    codeAddress();
+}
+
+/** Request to Geocoding Service **/
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  var tittle = document.getElementById('tittle');
+  //var foot = document.getElementById('foot');
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      satellite.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: satellite,
+          position: results[0].geometry.location
+      });
+
+      tittle.innerHTML   = results[0].formatted_address +
+        " " + results[0].geometry.location;
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+      
+      tittle.innerHTML = status;
+    }
+  });
+
+}
+
+/**  **/
+function change() { 
+  input.value = types.value;
+  search.click(); 
 }
