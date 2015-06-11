@@ -31,6 +31,9 @@ function initialize() {
   satellite.controls[google.maps.ControlPosition.TOP_LEFT].push(search);
   satellite.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(types);
 
+  var autocomplete = new google.maps.places.Autocomplete(input, 
+    componentRestrictions = { 'country':'co' });
+
   google.maps.event.addDomListener(types, 'change', change);
 }
 
@@ -61,7 +64,6 @@ function searchAddress() {
 function codeAddress() {
   var address = document.getElementById('address').value;
   var tittle = document.getElementById('tittle');
-  //var foot = document.getElementById('foot');
   var geocoder = new google.maps.Geocoder();
 
   geocoder.geocode( { 'address': address}, function(results, status) {
