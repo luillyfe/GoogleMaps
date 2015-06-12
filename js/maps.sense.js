@@ -31,8 +31,8 @@ function initialize() {
   satellite.controls[google.maps.ControlPosition.TOP_LEFT].push(search);
   satellite.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(types);
 
-  var autocomplete = new google.maps.places.Autocomplete(input, 
-    componentRestrictions = { 'country':'co' });
+  var componentRestrictions = { 'country':'co' };
+  var autocomplete = new google.maps.places.Autocomplete(input, componentRestrictions)
 
   google.maps.event.addDomListener(types, 'change', change);
 }
