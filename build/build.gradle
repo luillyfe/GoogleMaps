@@ -13,9 +13,9 @@ apply plugin: 'js'
 defaultTasks 'all'
 buildDir = 'target'
 
-def srcFile = 'stacktrace.js'
-def destFile = "${buildDir}/stacktrace-min.js"
-def testDir = 'test'
+def srcFile = '../maps.sense.js'
+def destFile = "${buildDir}/maps.sense.js"
+//def testDir = 'test'
 
 repositories {
 	mavenRepo url: 'http://repository.springsource.com/maven/bundles/release'
