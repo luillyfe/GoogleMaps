@@ -3,12 +3,11 @@ buildscript {
 		mavenLocal()
 		mavenCentral()
 	}
-	dependencies {
-		classpath 'com.eriwen:gradle-js-plugin:1.1'
-	}
 }
 
-apply plugin: 'js'
+plugins {
+	id "com.eriwen.gradle.js" version "1.12.1"
+}
 
 defaultTasks 'all'
 buildDir = 'target'
@@ -17,7 +16,7 @@ def srcFile = '../maps.sense.js'
 def destFile = "../maps.sense.js"
 
 repositories {
-	mavenRepo url: 'http://repository.springsource.com/maven/bundles/release'
+	maven { url 'http://conjars.org/repo/' }
 	mavenCentral()
 }
 
